@@ -6,6 +6,8 @@ import com.github.javafaker.Faker;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+
+import org.junit.runner.JUnitCore;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -16,6 +18,11 @@ public class FFDU {
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
+
+    public static void main(String[] args) {
+        JUnitCore jCore = new JUnitCore();
+        jCore.run();
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -50,7 +57,7 @@ public class FFDU {
                 driver.findElement(By.id("gform_next_button_3_4")).click();
 
                 for (int second = 0; ; second++) {
-                    if (second >= 60) fail("timeout");
+                    if (second >= 60) break;
                     try {
                         if (driver.findElement(By.id("choice_3_3_5")).isDisplayed()) break;
                     } catch (Exception e) {
@@ -61,7 +68,7 @@ public class FFDU {
                 driver.findElement(By.id("choice_3_3_5")).click();
                 driver.findElement(By.id("gform_next_button_3_5")).click();
                 for (int second = 0; ; second++) {
-                    if (second >= 60) fail("timeout");
+                    if (second >= 60) break;
                     try {
                         if (driver.findElement(By.id("choice_3_14_1")).isDisplayed()) break;
                     } catch (Exception e) {
@@ -73,7 +80,7 @@ public class FFDU {
                 driver.findElement(By.id("gform_next_button_3_15")).click();
 
                 for (int second = 0; ; second++) {
-                    if (second >= 60) fail("timeout");
+                    if (second >= 60) break;
                     try {
                         if (driver.findElement(By.id("gforms_confirmation_message")).isDisplayed()) break;
                     } catch (Exception e) {

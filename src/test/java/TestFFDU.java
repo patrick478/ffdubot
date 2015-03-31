@@ -78,6 +78,8 @@ public class TestFFDU {
 
         while (true) {
             try {
+
+                boolean successfulSoFar = true;
                 Faker faker = new Faker();
 
                 String name = faker.name().fullName();
@@ -97,38 +99,43 @@ public class TestFFDU {
                 driver.findElement(By.id("input_3_2")).sendKeys(email);
                 driver.findElement(By.id("gform_next_button_3_4")).click();
 
+                if(successfulSoFar)
                 for (int second = 0; ; second++) {
-                    if (second >= 60) break;
+                    if (second >= 30){ successfulSoFar = false; break;  }
                     try {
                         if (driver.findElement(By.id("choice_3_3_5")).isDisplayed()) break;
                     } catch (Exception e) {
                     }
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 }
-
+                if(successfulSoFar)
                 driver.findElement(By.id("choice_3_3_5")).click();
+                if(successfulSoFar)
                 driver.findElement(By.id("gform_next_button_3_5")).click();
+                if(successfulSoFar)
                 for (int second = 0; ; second++) {
-                    if (second >= 60) break;
+                    if (second >= 30) { successfulSoFar = false; break;  }
                     try {
                         if (driver.findElement(By.id("choice_3_14_1")).isDisplayed()) break;
                     } catch (Exception e) {
                     }
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 }
-
+                if(successfulSoFar)
                 driver.findElement(By.id("choice_3_14_1")).click();
+                if(successfulSoFar)
                 driver.findElement(By.id("gform_next_button_3_15")).click();
-
+                if(successfulSoFar)
                 for (int second = 0; ; second++) {
-                    if (second >= 60) break;
+                    if (second >= 30) { successfulSoFar = false; break;  }
                     try {
                         if (driver.findElement(By.id("gforms_confirmation_message")).isDisplayed()) break;
                     } catch (Exception e) {
                     }
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 }
                 System.out.println(++i);
+                if(!successfulSoFar) System.out.println("fail!");
             }
             catch(Exception e){
 

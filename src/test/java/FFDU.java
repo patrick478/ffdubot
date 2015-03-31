@@ -29,58 +29,62 @@ public class FFDU {
         int i = 0;
 
         while (true) {
-            Faker faker = new Faker();
+            try {
+                Faker faker = new Faker();
 
-            String name = faker.name().fullName();
-            String email = faker.internet().emailAddress();
-
-
-            driver.get(baseUrl + "/");
-
-            WebElement element = driver.findElement(By.id("noms"));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-            Thread.sleep(500);
+                String name = faker.name().fullName();
+                String email = faker.internet().emailAddress();
 
 
-            driver.findElement(By.id("input_3_1")).clear();
-            driver.findElement(By.id("input_3_1")).sendKeys(name);
-            driver.findElement(By.id("input_3_2")).clear();
-            driver.findElement(By.id("input_3_2")).sendKeys(email);
-            driver.findElement(By.id("gform_next_button_3_4")).click();
+                driver.get(baseUrl + "/");
 
-            for (int second = 0; ; second++) {
-                if (second >= 60) fail("timeout");
-                try {
-                    if (driver.findElement(By.id("choice_3_3_5")).isDisplayed()) break;
-                } catch (Exception e) {
+                WebElement element = driver.findElement(By.id("noms"));
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+                Thread.sleep(500);
+
+
+                driver.findElement(By.id("input_3_1")).clear();
+                driver.findElement(By.id("input_3_1")).sendKeys(name);
+                driver.findElement(By.id("input_3_2")).clear();
+                driver.findElement(By.id("input_3_2")).sendKeys(email);
+                driver.findElement(By.id("gform_next_button_3_4")).click();
+
+                for (int second = 0; ; second++) {
+                    if (second >= 60) fail("timeout");
+                    try {
+                        if (driver.findElement(By.id("choice_3_3_5")).isDisplayed()) break;
+                    } catch (Exception e) {
+                    }
+                    Thread.sleep(1000);
                 }
-                Thread.sleep(1000);
-            }
 
-            driver.findElement(By.id("choice_3_3_5")).click();
-            driver.findElement(By.id("gform_next_button_3_5")).click();
-            for (int second = 0; ; second++) {
-                if (second >= 60) fail("timeout");
-                try {
-                    if (driver.findElement(By.id("choice_3_14_1")).isDisplayed()) break;
-                } catch (Exception e) {
+                driver.findElement(By.id("choice_3_3_5")).click();
+                driver.findElement(By.id("gform_next_button_3_5")).click();
+                for (int second = 0; ; second++) {
+                    if (second >= 60) fail("timeout");
+                    try {
+                        if (driver.findElement(By.id("choice_3_14_1")).isDisplayed()) break;
+                    } catch (Exception e) {
+                    }
+                    Thread.sleep(1000);
                 }
-                Thread.sleep(1000);
-            }
 
-            driver.findElement(By.id("choice_3_14_1")).click();
-            driver.findElement(By.id("gform_next_button_3_15")).click();
+                driver.findElement(By.id("choice_3_14_1")).click();
+                driver.findElement(By.id("gform_next_button_3_15")).click();
 
-            for (int second = 0; ; second++) {
-                if (second >= 60) fail("timeout");
-                try {
-                    if (driver.findElement(By.id("gforms_confirmation_message")).isDisplayed()) break;
-                } catch (Exception e) {
+                for (int second = 0; ; second++) {
+                    if (second >= 60) fail("timeout");
+                    try {
+                        if (driver.findElement(By.id("gforms_confirmation_message")).isDisplayed()) break;
+                    } catch (Exception e) {
+                    }
+                    Thread.sleep(1000);
                 }
-                Thread.sleep(1000);
+                System.out.println(++i);
             }
-            System.out.println(++i);
+            catch(Exception e){
 
+            }
         }
     }
 

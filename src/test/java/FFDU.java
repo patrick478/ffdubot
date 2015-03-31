@@ -26,6 +26,8 @@ public class FFDU {
 
     @Test
     public void testFfdu() throws Exception {
+        int i = 0;
+
         while (true) {
             Faker faker = new Faker();
 
@@ -77,6 +79,8 @@ public class FFDU {
                 }
                 Thread.sleep(1000);
             }
+            System.out.println(++i);
+
         }
     }
 
